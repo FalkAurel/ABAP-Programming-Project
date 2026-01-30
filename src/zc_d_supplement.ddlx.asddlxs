@@ -1,0 +1,26 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_D_Supplements
+  with 
+{
+  @UI.facet: [{ position: 10, targetQualifier: 'SupplementDetails', label: 'Supplement Details', type: #FIELDGROUP_REFERENCE }]
+  
+  @UI.lineItem: [{ position: 10 }]
+  @UI.fieldGroup: [ { position: 10, qualifier: 'SupplementDetails' } ]
+  SupplementId;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [ { position: 20, qualifier: 'SupplementDetails' } ]
+  BookingID;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [ { position: 30, qualifier: 'SupplementDetails' } ]
+  SupplementCategory;
+  @UI.lineItem: [{ position: 40 }]
+  @UI.fieldGroup: [ { position: 40, qualifier: 'SupplementDetails' } ]
+  Price;
+  @UI.lineItem: [{ position: 50 }]
+  @UI.fieldGroup: [ { position: 50, qualifier: 'SupplementDetails' } ]
+  CurrencyCode;
+  @UI.lineItem: [{ position: 60 }]
+  @UI.fieldGroup: [ { position: 60, qualifier: 'SupplementDetails' } ]
+  Descritpion;
+  
+}

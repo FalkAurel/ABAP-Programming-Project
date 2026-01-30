@@ -1,0 +1,16 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Booking Interface'
+define view entity ZI_D_BookingTP
+  as select from /dmo/booking
+{
+  key travel_id     as TravelId,
+  key booking_id    as BookingId,
+      booking_date  as BookingDate,
+      customer_id   as CustomerId,
+      carrier_id    as CarrierId,
+      connection_id as ConnectionId,
+      flight_date   as FlightDate,
+      flight_price  as FlightPrice,
+      currency_code as CurrencyCode
+}

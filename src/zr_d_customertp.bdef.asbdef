@@ -1,0 +1,62 @@
+managed implementation in class zbp_r_d_customertp unique;
+//strict (  );
+
+define behavior for ZR_D_CustomerTP
+persistent table /dmo/customer
+lock master
+authorization master ( instance )
+{
+  field ( readonly ) CustomerId;
+  action createBooking parameter ZA_D_Flight;
+  association _Bookings { create; } //<-- create is declared here
+
+  mapping for /dmo/customer
+    {
+      City               = city;
+      CountryCode        = country_code;
+      CustomerId         = customer_id;
+      EmailAddress       = email_address;
+      FirstName          = first_name;
+      LastChangedAt      = last_changed_at;
+      LastName           = last_name;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LocalLastChangedBy = local_last_changed_by;
+      PhoneNumber        = phone_number;
+      PostalCode         = postal_code;
+      Street             = street;
+      Title              = title;
+    }
+}
+
+define behavior for ZR_D_BOOKINGTP
+persistent table /dmo/booking // OccupancyRate, SeatsMax, SeatsOccupied, TicketPrice, PlaneTypeId are all transient data fields derived from the association to /dmo/flight
+lock dependent by _Customer
+authorization dependent by _Customer
+{
+  //determination update_seats_occupied on save { create; }
+  //determination current_date on save { field BookingDate; }
+
+  determination add_metadata on save { create; } // This should set booking_id and TravelID when the booking is created.
+
+  update;
+  action remove;
+  field ( readonly ) TravelId, BookingId, CustomerId, OccupancyRate, AirportFromId, AirportToId, ArriavalTime, DepatureTime, PlaneTypeId, BookingDate;
+  field ( mandatory : create ) FlightPrice, ConnectionId, CarrierId, FlightDate, CurrencyCode;
+
+  mapping for /dmo/booking
+    {
+      BookingDate  = booking_date;
+      BookingId    = booking_id;
+      CarrierId    = carrier_id;
+      ConnectionId = connection_id;
+      CurrencyCode = currency_code;
+      FlightDate   = flight_date;
+      CustomerId   = customer_id;
+      FlightPrice  = flight_price;
+      TravelId     = travel_id;
+    }
+
+  association _Customer;
+}

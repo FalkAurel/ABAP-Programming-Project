@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition'
+define service ZC_D_Customer {
+  expose ZC_D_Customer;
+  expose ZC_D_Booking;
+  expose ZC_D_Supplements;
+}

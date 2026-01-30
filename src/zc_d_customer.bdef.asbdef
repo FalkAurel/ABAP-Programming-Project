@@ -1,0 +1,19 @@
+projection;
+//strict ( 2 );
+
+define behavior for ZC_D_Customer //alias <alias_name>
+{
+
+  use action createBooking;
+  use association _Bookings { create; }
+}
+
+define behavior for ZC_D_Booking //alias <alias_name>
+{
+  use update;
+
+  use action remove;
+
+
+  use association _Customer;
+}

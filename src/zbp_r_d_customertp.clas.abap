@@ -1,0 +1,5 @@
+CLASS zbp_r_d_customertp DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zr_d_customertp.
+ENDCLASS.
+
+CLASS zbp_r_d_customertp IMPLEMENTATION.
+ENDCLASS.

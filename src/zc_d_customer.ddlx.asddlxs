@@ -1,0 +1,57 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo: { typeName: 'Customer',
+                  typeNamePlural: 'Customers',
+                  title.value: 'CustomerId',
+                  description.value: 'LastName'}
+                  
+ 
+annotate entity ZC_D_Customer
+with 
+{
+  /* Facets */
+  @UI.facet: [
+    { position: 10, targetQualifier: 'CustomerDetails', label: 'Customer Details', type: #FIELDGROUP_REFERENCE },
+    { position: 20, targetElement: '_Bookings', label: 'Bookings', type: #LINEITEM_REFERENCE },
+    { position: 30, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+  ]
+
+  /* Fields */
+  //@UI.fieldGroup: [ { position: 10, qualifier: 'AdminData' } ]
+  @UI.identification: [ { position: 10, type: #FOR_ACTION, label: 'Book Flight', dataAction: 'createBooking' } ]
+  @UI.lineItem: [ { position: 10, type: #FOR_ACTION, label: 'Book Flight', dataAction: 'createBooking' } ]
+  CustomerId;
+
+  @UI.lineItem: [ { position: 20, label: 'First Name', importance: #HIGH } ]
+  @UI.fieldGroup: [ { position: 10, qualifier: 'CustomerDetails' } ]
+  FirstName;
+
+  @UI.fieldGroup: [ { position: 20, qualifier: 'CustomerDetails' } ]
+  @UI.lineItem: [ { position: 30, label: 'Last Name', importance: #HIGH } ]
+  @Search.defaultSearchElement: true
+  LastName;
+
+  @UI.fieldGroup: [ { position: 0, qualifier: 'CustomerDetails' } ]
+  @UI.lineItem: [ { position: 40, label: 'Title', importance: #MEDIUM } ]
+  Title;
+
+  @UI.fieldGroup: [ { position: 30, qualifier: 'CustomerDetails' } ]
+  @UI.lineItem: [ { position: 50, label: 'Street', importance: #HIGH } ]
+  Street;
+
+  @UI.fieldGroup: [ { position: 40, qualifier: 'CustomerDetails' } ]
+  @UI.lineItem: [ { position: 60, label: 'Postal Code', importance: #MEDIUM } ]
+  PostalCode;
+
+  @UI.fieldGroup: [ { position: 50, qualifier: 'CustomerDetails' } ]
+  @UI.lineItem: [ { position: 70, label: 'City', importance: #MEDIUM } ]
+  City;
+
+  @UI.fieldGroup: [ { position: 60, qualifier: 'CustomerDetails' } ]
+  @UI.lineItem: [ { position: 80, label: 'Country', importance: #MEDIUM } ]
+  CountryCode;
+
+  @UI.fieldGroup: [ { position: 70, qualifier: 'CustomerDetails' } ]
+  @UI.lineItem: [ { position: 90, label: 'Phone Number', importance: #HIGH } ]
+  PhoneNumber;
+}

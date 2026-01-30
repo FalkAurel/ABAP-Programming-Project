@@ -1,0 +1,81 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo: {
+  typeName: 'Booking',
+  typeNamePlural: 'Bookings',
+  title.value: '_Customer.FullName',
+  description.value: 'BookingDate',
+  imageUrl: 'ImageUrl'
+}
+
+
+
+annotate entity ZC_D_Booking with
+
+{
+  /* Facets */
+  @UI.facet: [ { position: 10, targetQualifier: 'BookingDetails', label: 'Booking Details', type: #FIELDGROUP_REFERENCE },
+               { position: 20, targetElement: '_Supplements', label: 'Supplements', type: #LINEITEM_REFERENCE },
+               { position: 30, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE } ]
+  @UI.fieldGroup: [ { position: 10, qualifier: 'AdminData' } ]
+  @UI.lineItem: [ { position: 10, type: #FOR_ACTION, label: 'Cancel Booking', dataAction: 'remove' } ]
+  /* Fields */
+  BookingId;
+
+  @UI.fieldGroup: [ { position: 20, qualifier: 'AdminData' } ]
+  TravelId;
+
+  @UI.fieldGroup: [ { position: 30, qualifier: 'AdminData' } ]
+  CustomerId;
+
+  @UI.fieldGroup: [ { position: 20, qualifier: 'BookingDetails' } ]
+  @UI.lineItem: [ { position: 20 } ]
+  BookingDate;
+
+
+  @UI.facet: [
+    { position: 0, targetElement: 'ImageUrl', label: 'Airline Image', type: #DATAPOINT_REFERENCE }
+  ]
+  @UI.lineItem: [ { position: 0, label: 'Logo' } ]
+  ImageUrl;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: '/DMO/I_Connection_StdVH', element: 'AirlineID' } } ]
+  @UI.fieldGroup: [ { position: 30, qualifier: 'BookingDetails' } ]
+  CarrierId;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: '/DMO/I_Connection_StdVH', element: 'ConnectionID' } } ]
+  @UI.fieldGroup: [ { position: 40, qualifier: 'BookingDetails' } ]
+  @UI.lineItem: [ { position: 40 } ]
+  @Search.defaultSearchElement: true
+  ConnectionId;
+
+  @UI.fieldGroup: [ { position: 50, qualifier: 'BookingDetails' } ]
+  @UI.lineItem: [ { position: 50 } ]
+  FlightDate;
+
+  @UI.fieldGroup: [ { position: 60, qualifier: 'BookingDetails' } ]
+  @UI.lineItem: [ { position: 60 } ]
+  // @Consumption.valueHelpDefinition: [ { entity: { name: 'I_CurrencyStdVH', element: 'Currency' } } ]
+  FlightPrice;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'I_CurrencyStdVH', element: 'Currency' } } ]
+  CurrencyCode;
+
+
+  @UI.fieldGroup: [ { position: 80, qualifier: 'BookingDetails' } ]
+  PlaneTypeId;
+
+  @UI.fieldGroup: [ { position: 90, qualifier: 'BookingDetails' } ]
+  OccupancyRate;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: '/DMO/I_Connection_StdVH', element: 'DepartureAirport' } } ]
+  @UI.fieldGroup: [ { position: 100, qualifier: 'BookingDetails' } ]
+  AirportFromId;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: '/DMO/I_Connection_StdVH', element: 'DestinationAirport' } } ]
+  @UI.fieldGroup: [ { position: 110, qualifier: 'BookingDetails' } ]
+  AirportToId;
+
+  @UI.fieldGroup: [ { position: 120, qualifier: 'BookingDetails' } ]
+  DepatureTime;
+}
